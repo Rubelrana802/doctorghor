@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\department;
 use App\doctor;
+use App\reg_doctor;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
@@ -72,6 +73,16 @@ class adddoctorController extends Controller
     public function delete($id){
         $medicine = doctor::find($id);
         $medicine->delete();
-        return redirect('/doctor/manage/')->with('message','Medicine name Deteted Successfully');
+        return redirect('/doctor/manage/')->with('message','Medicine name deteted successfully');
     }
+
+
+    public function regdoctor(){
+      $doctors = reg_doctor::all();
+      return view('admin.regdoctor.showdoctor',get_defined_vars());
+    }
+    public function edit(){
+
+    }
+
 }

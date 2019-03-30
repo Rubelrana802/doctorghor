@@ -27,5 +27,9 @@
     "test": "tests"
   },
   "author": "rubel",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "laravel-echo": "^1.5.3",
+    "pusher-js": "^4.4.0"
+  }
 }

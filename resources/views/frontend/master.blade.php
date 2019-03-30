@@ -8,6 +8,8 @@
     <meta name="robots" content="index follow">
     <meta name="googlebot" content="index follow">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <meta name="mobileoptimized" content="0" />
     <meta name="keywords" content="directory, doctor, doctor directory, Health directory, listing, map, medical, medical directory, professional directory, reservation, reviews">
     <meta name="description" content="Health Care & Medical Services Directory">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

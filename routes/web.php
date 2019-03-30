@@ -8,10 +8,17 @@ Route::get('/doctor/single/{id}', 'frontController@doctorsingle');
 Route::post('/doctor/single', 'frontController@doctorsingle');
 Route::post('/confirm/appointment', 'frontController@appointment')->name('confirm');
 Route::get('/confirm/appointment', 'frontController@appointmentconfirm');
+Route::post('/sms','frontController@sendsms');
 Route::get('/thank/you', 'frontController@thankyou');
+Route::post('/thank/you', 'frontController@thankyou');
 Route::get('/patient/view','doctorViewController@manage');
 
+
+
+
 Route::post('/autocomplete/fetch', 'frontController@fetch')->name('autocomplete.fetch');
+Route::post('/autocomplete/fetch', 'PatientController@fetch')->name('autocomplete.fetch');
+
 
 //Select route for division to department..
 Route::get('/json-districts','frontController@districts');
@@ -30,8 +37,11 @@ Route::get('/docotorm/', 'doctorViewController@action')->name('live_search.actio
 /*Doctor View*/
 
 /*User Auth route start*/
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+/*Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');*/
+
+Route::get('page', 'HomeController@pagenotfound')->name('notfound');
+
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 Route::post('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 Route::get('doc/register', 'doctorController@add')->name('docregister');
@@ -55,7 +65,11 @@ Route::prefix('superadmin')->group(function() {
   Route::post('/register','AdminRegisterController@Aregister')->name('admin.register.submit');
 });
 
-Route::get('/reg/doctor','AdmindoctorController@regdoctor')->name('regdoctor');
+Route::get('/reg/doctor/view','adddoctorController@regdoctor');
+Route::get('/reg/doctor/edit{id}','adddoctorController@edit');
+Route::post('/reg/doctor/edit','adddoctorController@update');
+
+
 /*Super Admin end*/
 
 /* company start*/
@@ -102,6 +116,15 @@ Route::prefix('patient')->group(function() {
   Route::post('/logout', 'Auth\PatientLoginController@logout')->name('patient.logout');
   Route::get('/register','PatientRegisterController@RegistrationForm')->name('patient.register');
   Route::post('/register','PatientRegisterController@cregister')->name('patient.register.submit');
+
+  //appointment 
+  Route::get('/other/appointment', 'PatientController@appointment');
+  Route::get('/single/{id}', 'PatientController@doctorviewpatient');
+  Route::post('/single', 'PatientController@doctorviewpatient');
+  Route::post('/appointment', 'PatientController@patientappointment')->name('patientappointment');
+  Route::get('/appointment', 'PatientController@patientconfirm');
+  Route::get('/request/success', 'PatientController@thankyou');
+
 });
 /* Patient end*/
 
@@ -199,9 +222,9 @@ Route::prefix('doctor')->group(function() {
 Route::get('/add', 'adddoctorController@index');
 Route::post('/save', 'adddoctorController@save');
 Route::get('/manage', 'adddoctorController@manage');
-Route::get('/edit/{id}', 'adddoctorController@edit');
+/*Route::get('/edit/{id}', 'adddoctorController@edit');
 Route::post('/edit', 'adddoctorController@update');
-Route::get('/delete/{id}', 'adddoctorController@delete');
+Route::get('/delete/{id}', 'adddoctorController@delete');*/
 });
 /* End Doctor end */
 

@@ -66,7 +66,7 @@
           <span>Register Doctor</span> <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="sidebar-submenu">
-        <li><a href="{{route('regdoctor')}}"><i class="fa fa-circle-o"></i> Add Doctor</a></li>
+        <li><a href="{{ url('/reg/doctor/view') }}"><i class="fa fa-circle-o"></i> Add Doctor</a></li>
         </ul>
       </li>    
    </div>

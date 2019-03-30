@@ -25,4 +25,8 @@ class HomeController extends Controller
     {
         return view('doctor.doctor_home.homeContent');
     }
+
+    public function pagenotfound(){
+        return view('errors.404');
+    }
 }

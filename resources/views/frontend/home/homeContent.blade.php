@@ -3,8 +3,8 @@
 
 <base href="https://doctorghor.com/" >
 
-<section class="banner background-overlay" style="background-color: #b9bbba3d">
-  <div class="container z-index-2 links">
+<section class="padding-tb-80px background1" id="banner">
+    <div class="container z-index-2 links" style="margin-top: -50px;">
     <div class="row justify-content-center">
       <div class="col-sm-6 text-center">
         <div class="input-group" style="margin-top: 120px;">
@@ -15,11 +15,8 @@
       </div>
     </div>
   </div>
-</section>
-
-<section class="banner padding-tb-50px sm-ptb-7px background-overlay" style="background-color: #b9bbba3d">
     <div class="title text-center">
-        <h1 class="text-dark font-weight-300" style="margin-top: -10px; font-size: 30px;">Find Your Doctor</h1>
+        <h1 class="text-dark font-weight-300" style="margin-top: 22px; font-size: 30px; color: #ffffff;">Find Your Doctor</h1>
     </div>
         <div class="container z-index-2 position-relative">
             <div class="justify-content-center">
@@ -104,7 +101,7 @@
 			{{ Form::close() }}
         </div>
     </section>
-    <section class="padding-tb-100px background1" style="background-image: url('{{ asset('public/frontend') }}/assets/img/banner0111.jpg');">
+    <section class="padding-tb-100px background1" style="background-image: url('{{ asset('public/frontend') }}/assets/img/disbanner.jpg');">
         <div class="container">
             <div class="row">
                 <div class="col-lg-1 col-sm-1"></div>
@@ -249,6 +246,22 @@ $('#link').click(function(){
         color: #ffffff;
         font-size: 30px;
     }
+  #banner{
+
+  background: 
+    /* top, transparent red, faked with gradient */ 
+    linear-gradient(
+rgba(210, 218, 226,1.0),
+      rgba(32, 191, 107,1.0)
+    ),
+    /* bottom, image */
+    url('{{ asset('public/frontend') }}/assets/img/worldbanner.jpg');
+      -webkit-background-size:cover;
+  background-size: cover;
+  text-align: center;
+  height: auto;
+  }
+
 </style>
 
 <script>

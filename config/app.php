@@ -150,6 +150,7 @@ return [
          * Package Service Providers...
          */
         Collective\Html\HtmlServiceProvider::class,
+        /*Gr8Shivam\SmsApi\SmsApiServiceProvider::class,*/
         /*
          * Application Service Providers...
          */
@@ -158,8 +159,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Nexmo\Laravel\NexmoServiceProvider::class,
+        /*Nexmo\Laravel\NexmoServiceProvider::class,*/
         Intervention\Image\ImageServiceProvider::class,
+        SimpleSoftwareIO\SMS\SMSServiceProvider::class,
 
     ],
 
@@ -213,6 +215,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Nexmo' => Nexmo\Laravel\Facade\Nexmo::class,
         'Image' => Intervention\Image\Facades\Image::class,
+/*        'SmsApi' => Gr8Shivam\SmsApi\SmsApiFacade::class,*/
+        'SMS' => SimpleSoftwareIO\SMS\Facades\SMS::class,
 
     ],
 

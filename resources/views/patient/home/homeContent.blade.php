@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col text-center">
         <h1>Welcome to doctorghor.com</h1>
-        <h3>Patient Dashboard</h3>
+        <h3>My Appointment</h3>
           <div class="row justify-content-center">
             <div class="col-6">
             <img style="width:179px; height: 180px!important;" alt="image" class="img-fluid mt-2 rounded-circle" src="{{ asset('public/frontend') }}/assets/img/doctor-1.jpg">
@@ -37,6 +37,11 @@
               <th>Fee</th>
               <th>:</th>
               <th>{{ $patient->fee }} &#2547;</th>
+            </tr>
+            <tr>
+              <th>Mobile</th>
+              <th>:</th>
+              <th>+88{{ $patient->Mobile }}</th>
             </tr>
             <tr>
               <th>Appointment Time & Date</th>

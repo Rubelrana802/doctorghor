@@ -1,5 +1,5 @@
 <footer class="fdb-block footer-small bg-dark">
-  <div class="container">
+  <div class="container fixed-footer">
     <div class="row text-center align-items-center">
       <div class="col">
         <ul class="nav justify-content-center" style="margin-top: 30px;">

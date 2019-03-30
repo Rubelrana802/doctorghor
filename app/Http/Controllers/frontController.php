@@ -10,6 +10,7 @@ use App\Hospital;
 use App\department;
 use App\doctor;
 use App\patient;
+use App\notification;
 use DB;
 use App\Notifications\nofifydoctor;
 use Auth;
@@ -83,6 +84,7 @@ class frontController extends Controller
   }
 
   public function appointmentconfirm(Request $request){
+
       $patients = new patient();
       $patients->doctor_id = $request->doctorid;
       $patients->datetime = $request->datetime;
@@ -92,12 +94,33 @@ class frontController extends Controller
       $patients->visit = $request->visit;
       $patients->password = $request->mobile;
 
-      //notification
-      $patients->save();
-      return redirect('/thank/you')->with('message','Doctor insert successfully.');
+      $mobile = $request->docmobile;
+
+      $data_json = '{
+       "from":"Infobip",
+       "to":"'.$mobile.'",
+       "text":"Hello, Your appointment Patient name: Rubel and appointment date & time: 25/03/2019 18:20. Thank you!"
+    }';
+    $authorization = base64_encode('rubelranaadmin:Rubel01775@');
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Accept: application/json',"Authorization: Basic $authorization"));
+    //curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+    curl_setopt($ch, CURLOPT_URL, 'https://api.infobip.com/sms/1/text/single');
+
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS,$data_json);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response  = curl_exec($ch);
+    //var_dump(curl_getinfo($ch));
+    var_dump($response);
+    curl_close($ch);
+   $patients->save();
+
+      return redirect('/thank/you')->with('message','patient insert successfully.');
   }
 
 
+ 
   public function thankyou(){
 
     return view('frontend.home.request_success');
@@ -109,17 +132,19 @@ class frontController extends Controller
      {
       $query = $request->get('query');
       $data = DB::table('doctors')
-        ->where('name', 'LIKE', "%{$query}%")
+        ->where('name','Specialty', 'LIKE', "%{$query}%")
         ->get();
       $output = '<ul class="dropdown-menu" style="display:block; overflow-y: scroll; background-color:  #87CEFA; width: 100%; height: 242px;">';
       foreach($data as $row)
       {
        $output .= '
-       <li style="margin-left: 10px; margin-buttom: 10px; padding: 2px; "><a target="_blank" href="http://doctorghor.com/doctor/single/'.$row->id.'">'.$row->name.'</a></li>
+       <li style="margin-left: 10px; margin-buttom: 10px; padding: 2px; "><a target="_blank" href="http://localhost/doctorghor/doctor/single/'.$row->id.'">'.$row->name.'+'.($row->Specialty).'</a></li>
        ';
       }
       $output .= '</ul>';
       echo $output;
      }
     }
+
+    
 }
